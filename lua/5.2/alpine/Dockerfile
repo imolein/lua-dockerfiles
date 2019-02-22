@@ -1,14 +1,13 @@
 FROM alpine:3.8
 
-LABEL maintainer="Andriy Kornatskyy <andriy.kornatskyy@live.com>"
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
 ENV LUA_VERSION=5.2.4
 
 RUN set -ex \
     \
+    && apk add readline-dev \
     && apk add --no-cache --virtual .build-deps \
-        ca-certificates \
-        openssl \
         make \
         gcc \
         libc-dev \
@@ -17,7 +16,7 @@ RUN set -ex \
         -O - | tar -xzf - \
     \
     && cd lua-${LUA_VERSION} \
-    && make -j"$(nproc)" posix \
+    && make -j"$(nproc)" linux \
     && make install \
     && cd .. \
     && rm -rf lua-${LUA_VERSION} \
