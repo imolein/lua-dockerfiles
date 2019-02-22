@@ -1,28 +1,10 @@
 # Docker Library
 
-[![Build Status](https://travis-ci.org/akornatskyy/docker-library.svg?branch=master)](https://travis-ci.org/akornatskyy/docker-library)
+This repository is a fork from [akornatskyy/docker-library](https://github.com/akornatskyy/docker-library) with some changes to fit my setup:
 
-# Images
+* Removed luajit and nginx, cause I don't need it
+* Lua is build with plattform **linux**, instead of **posix**, so I don't get the error `dynamic libraries not enabled; check your Lua installation` when loading libraries like luafilesystem ([Issue](https://github.com/akornatskyy/docker-library/issues/1))
+* Install build environment and keep it in luarocks images, so I don't have to install it every time when I want to test something which involves libraries written in C
+   * Disadvantage: The images are around 180MB instead of the sexy 12MB without the build environment
 
-These images are based on the [Alpine Linux](https://alpinelinux.org/).
-- [lua](https://hub.docker.com/r/akorn/lua/) 5.1, 5.2, 5.3
-- [luajit](https://hub.docker.com/r/akorn/luajit/) 2.0, 2.1
-- [luarocks](https://hub.docker.com/r/akorn/luarocks/) lua, luajit
-- [nginx](https://hub.docker.com/r/akorn/nginx/) stable-lua5.1, stable-luajit2.0, stable-luajit2.1
-
-# Examples
-
-```
-docker run -it --rm akorn/lua:5.1-alpine
-```
-
-# Setup
-
-```
-docker images --format "{{.Repository}}:{{.Tag}}" | awk '/akorn/ && !/none/' \
-     | tac | xargs -I {} docker push {}
-```
-
-# Links
-
-- [Best practices](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/) for writing Dockerfiles
+I don't have a Docker Hub account, so you have to clone the repository and build the Docker images on your own (manually or using the update.sh scripts). Maybe I'll create one in the future.
