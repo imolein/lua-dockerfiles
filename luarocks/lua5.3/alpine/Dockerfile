@@ -1,31 +1,27 @@
-FROM akorn/lua:5.3-alpine
+FROM imo/lua5.3:latest
 
-LABEL maintainer="Andriy Kornatskyy <andriy.kornatskyy@live.com>"
+MAINTAINER Sebastian Huebner <sh@kokolor.es>
 
-ENV LUAROCKS_VERSION=3.0.4
+ENV LUAROCKS_VERSION 3.0.4
 
+# Install build environment so C modules can be build directly using this image
+# without installing stuff before
 RUN set -ex \
-    \
-    && apk add --no-cache \
-        ca-certificates \
-        openssl \
-        curl \
-    \
-    && apk add --no-cache --virtual .build-deps \
-        make \
-        gcc \
-        libc-dev \
-    \
-    && wget -c https://github.com/luarocks/luarocks/archive/v${LUAROCKS_VERSION}.tar.gz \
-        -O - | tar -xzf - \
-    \
+    && apk add --no-cache build-base \
+      m4 \
+      bsd-compat-headers \
+      openssl \
+      openssl-dev \
+      ca-certificates \
+      curl \
+      unzip \
+    && wget -cO - https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz | \
+      tar -xzf - \
     && cd luarocks-${LUAROCKS_VERSION} \
     && ./configure --with-lua=/usr/local \
     && make build \
     && make install \
     && cd .. \
-    && rm -rf luarocks-${LUAROCKS_VERSION} \
-    \
-    && apk del .build-deps
+    && rm -rf luarocks-${LUAROCKS_VERSION}
 
 CMD ["luarocks"]
