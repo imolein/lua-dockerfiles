@@ -2,7 +2,7 @@
 set -eo pipefail
 
 
-for c in lua luajit luarocks nginx; do
+for c in lua luarocks; do
   $c/update.sh
 done
 
