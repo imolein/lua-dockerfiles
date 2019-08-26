@@ -2,7 +2,7 @@ FROM imo/lua5.3:latest
 
 MAINTAINER Sebastian Huebner <sh@kokolor.es>
 
-ENV LUAROCKS_VERSION 3.1.2
+ENV LUAROCKS_VERSION 3.1.3
 
 # Install build environment so C modules can be build directly using this image
 # without installing stuff before
