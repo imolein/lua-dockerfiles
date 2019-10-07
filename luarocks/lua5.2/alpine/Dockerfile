@@ -1,4 +1,4 @@
-FROM imo/lua5.2:latest
+FROM imolein/lua:5.2
 
 MAINTAINER Sebastian Huebner <sh@kokolor.es>
 
@@ -15,6 +15,7 @@ RUN set -ex \
       ca-certificates \
       curl \
       unzip \
+      git \
     && wget -cO - https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz | \
       tar -xzf - \
     && cd luarocks-${LUAROCKS_VERSION} \
