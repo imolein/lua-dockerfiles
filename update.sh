@@ -3,7 +3,7 @@ set -eo pipefail
 
 
 for c in lua luarocks; do
-  $c/update.sh
+  ${c}/update.sh
 done
 
 docker images
