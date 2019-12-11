@@ -1,6 +1,6 @@
 FROM imolein/lua:5.3
 
-MAINTAINER Sebastian Huebner <sh@kokolor.es>
+LABEL maintainer = "Sebastian Huebner <sh@kokolor.es>"
 
 ENV LUAROCKS_VERSION 3.2.1
 
