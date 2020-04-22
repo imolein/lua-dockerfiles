@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:latest
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
