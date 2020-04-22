@@ -1,4 +1,4 @@
-FROM imolein/lua:5.4-beta
+FROM imolein/lua:5.4
 
 LABEL maintainer = "Sebastian Huebner <sh@kokolor.es>"
 
