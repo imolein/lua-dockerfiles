@@ -12,7 +12,7 @@ RUN set -ex \
         gcc \
         libc-dev \
     \
-    && wget -c https://www.lua.org/work/lua-${LUA_VERSION}-rc1.tar.gz \
+    && wget -c https://www.lua.org/work/lua-${LUA_VERSION}-rc3.tar.gz \
         -O - | tar -xzf - \
     \
     && cd lua-${LUA_VERSION} \
