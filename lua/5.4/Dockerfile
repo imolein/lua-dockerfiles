@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM alpine:latest
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
@@ -12,7 +12,7 @@ RUN set -ex \
         gcc \
         libc-dev \
     \
-    && wget -c https://www.lua.org/work/lua-${LUA_VERSION}-rc3.tar.gz \
+    && wget -c https://www.lua.org/work/lua-${LUA_VERSION}-rc4.tar.gz \
         -O - | tar -xzf - \
     \
     && cd lua-${LUA_VERSION} \
