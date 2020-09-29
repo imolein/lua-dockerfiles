@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
-ENV LUA_VERSION=5.3.5
+ENV LUA_VERSION=5.3.6
 
 RUN set -ex \
     \
@@ -24,3 +24,4 @@ RUN set -ex \
     && apk del .build-deps
 
 CMD ["lua"]
+
