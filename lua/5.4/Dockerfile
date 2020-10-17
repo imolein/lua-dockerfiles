@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
-ENV LUA_VERSION=5.4.0
+ENV LUA_VERSION=5.4.1
 
 RUN set -ex \
     \
