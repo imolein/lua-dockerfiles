@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
+docker pull alpine:latest
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 versions=( */ )
