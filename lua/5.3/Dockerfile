@@ -6,6 +6,8 @@ ENV LUA_VERSION=5.3.6
 
 RUN set -ex \
     \
+    && apk update \
+    && apk upgrade \
     && apk add readline-dev \
     && apk add --no-cache --virtual .build-deps \
         make \
