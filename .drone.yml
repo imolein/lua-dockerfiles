@@ -16,6 +16,10 @@ steps:
         - '5.1'
       dockerfile: lua/5.1/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
 
   - name: lua5.2
     image: plugins/docker
@@ -29,6 +33,10 @@ steps:
         - '5.2'
       dockerfile: lua/5.2/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
 
   - name: lua5.3
     image: plugins/docker
@@ -42,6 +50,10 @@ steps:
         - '5.3'
       dockerfile: lua/5.3/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
 
   - name: lua5.4
     image: plugins/docker
@@ -55,6 +67,19 @@ steps:
         - '5.4'
       dockerfile: lua/5.4/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
+
+trigger:
+  ref:
+    - refs/heads/master
+    - "refs/tags/**"
+  event:
+    - cron
+  cron:
+    - weekly_build
 
 ---
 kind: pipeline
@@ -74,6 +99,10 @@ steps:
         - '5.1'
       dockerfile: luarocks/5.1/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
 
   - name: lua5.2
     image: plugins/docker
@@ -87,6 +116,10 @@ steps:
         - '5.2'
       dockerfile: luarocks/5.2/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
 
   - name: lua5.3
     image: plugins/docker
@@ -100,6 +133,10 @@ steps:
         - '5.3'
       dockerfile: luarocks/5.3/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
 
   - name: lua5.4
     image: plugins/docker
@@ -113,3 +150,20 @@ steps:
         - '5.4'
       dockerfile: luarocks/5.4/Dockerfile
       dry_run: true
+    when:
+      event:
+        exclude:
+          - pull_request
+
+
+trigger:
+  ref:
+    - refs/heads/master
+    - "refs/tags/**"
+  event:
+    - cron
+  cron:
+    - weekly_build
+
+depends_on:
+  - publish-lua
