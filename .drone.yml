@@ -55,10 +55,8 @@ steps:
 trigger:
   ref:
     - refs/heads/master
-    - "refs/tags/**"
   event:
-    exclude:
-      - pull_request
+    - push
 
 ---
 kind: pipeline
@@ -118,10 +116,8 @@ steps:
 trigger:
   ref:
     - refs/heads/master
-    - "refs/tags/**"
   event:
-    exclude:
-      - pull_request
+    - push
 
 depends_on:
   - publish-lua
@@ -184,7 +180,9 @@ trigger:
   ref:
     - refs/heads/master
   event:
-    - push
+    - cron
+  cron:
+    - weekly_build
 
 ---
 kind: pipeline
@@ -245,7 +243,9 @@ trigger:
   ref:
     - refs/heads/master
   event:
-    - push
+    - cron
+  cron:
+    - weekly_build
 
 depends_on:
   - weekly-rebuild-lua
