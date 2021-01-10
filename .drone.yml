@@ -15,7 +15,6 @@ steps:
       tags:
         - '5.1'
       dockerfile: lua/5.1/Dockerfile
-      dry_run: true
 
   - name: lua5.2
     image: plugins/docker
@@ -28,7 +27,6 @@ steps:
       tags:
         - '5.2'
       dockerfile: lua/5.2/Dockerfile
-      dry_run: true
 
   - name: lua5.3
     image: plugins/docker
@@ -41,7 +39,6 @@ steps:
       tags:
         - '5.3'
       dockerfile: lua/5.3/Dockerfile
-      dry_run: true
 
   - name: lua5.4
     image: plugins/docker
@@ -54,7 +51,6 @@ steps:
       tags:
         - '5.4'
       dockerfile: lua/5.4/Dockerfile
-      dry_run: true
 
 trigger:
   ref:
@@ -83,7 +79,6 @@ steps:
       tags:
         - '5.1'
       dockerfile: luarocks/5.1/Dockerfile
-      dry_run: true
 
   - name: lua5.2
     image: plugins/docker
@@ -96,7 +91,6 @@ steps:
       tags:
         - '5.2'
       dockerfile: luarocks/5.2/Dockerfile
-      dry_run: true
 
   - name: lua5.3
     image: plugins/docker
@@ -109,7 +103,6 @@ steps:
       tags:
         - '5.3'
       dockerfile: luarocks/5.3/Dockerfile
-      dry_run: true
 
   - name: lua5.4
     image: plugins/docker
@@ -122,7 +115,6 @@ steps:
       tags:
         - '5.4'
       dockerfile: luarocks/5.4/Dockerfile
-      dry_run: true
 
 
 trigger:
