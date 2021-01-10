@@ -1,3 +1,5 @@
+[![Build Status](https://drone.kokolor.es/api/badges/imo/lua-dockerfiles/status.svg)](https://drone.kokolor.es/imo/lua-dockerfiles)
+
 # Docker Library
 
 This repository is a fork from [akornatskyy/docker-library](https://github.com/akornatskyy/docker-library) with some changes to fit my setup:
