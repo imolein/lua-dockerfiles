@@ -64,10 +64,10 @@ type: docker
 name: publish-luarocks
 
 steps:
-  - name: luarocks 5.1
+  - name: luarocks5.1
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -76,10 +76,10 @@ steps:
         - '5.1'
       dockerfile: luarocks/5.1/Dockerfile
 
-  - name: lua5.2
+  - name: luarocks5.2
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -88,10 +88,10 @@ steps:
         - '5.2'
       dockerfile: luarocks/5.2/Dockerfile
 
-  - name: lua5.3
+  - name: luarocks5.3
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -100,10 +100,10 @@ steps:
         - '5.3'
       dockerfile: luarocks/5.3/Dockerfile
 
-  - name: lua5.4
+  - name: luarocks5.4
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -190,10 +190,10 @@ type: docker
 name: weekly-rebuild-luarocks
 
 steps:
-  - name: luarocks 5.1
+  - name: luarocks5.1
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -202,10 +202,10 @@ steps:
         - '5.1'
       dockerfile: luarocks/5.1/Dockerfile
 
-  - name: lua5.2
+  - name: luarocks5.1
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -214,10 +214,10 @@ steps:
         - '5.2'
       dockerfile: luarocks/5.2/Dockerfile
 
-  - name: lua5.3
+  - name: luarocks5.1
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
@@ -226,10 +226,10 @@ steps:
         - '5.3'
       dockerfile: luarocks/5.3/Dockerfile
 
-  - name: lua5.4
+  - name: luarocks5.1
     image: plugins/docker
     settings:
-      repo: imolein/lua
+      repo: imolein/luarocks
       username:
         from_secret: docker_username
       password:
