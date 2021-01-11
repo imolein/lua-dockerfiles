@@ -202,7 +202,7 @@ steps:
         - '5.1'
       dockerfile: luarocks/5.1/Dockerfile
 
-  - name: luarocks5.1
+  - name: luarocks5.2
     image: plugins/docker
     settings:
       repo: imolein/luarocks
@@ -214,7 +214,7 @@ steps:
         - '5.2'
       dockerfile: luarocks/5.2/Dockerfile
 
-  - name: luarocks5.1
+  - name: luarocks5.3
     image: plugins/docker
     settings:
       repo: imolein/luarocks
@@ -226,7 +226,7 @@ steps:
         - '5.3'
       dockerfile: luarocks/5.3/Dockerfile
 
-  - name: luarocks5.1
+  - name: luarocks5.4
     image: plugins/docker
     settings:
       repo: imolein/luarocks
