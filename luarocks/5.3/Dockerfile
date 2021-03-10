@@ -1,8 +1,8 @@
 FROM imolein/lua:5.3
 
-LABEL maintainer = "Sebastian Huebner <sh@kokolor.es>"
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
-ENV LUAROCKS_VERSION 3.5.0
+ENV LUAROCKS_VERSION="3.5.0"
 
 # Install build environment so C modules can be build directly using this image
 # without installing stuff before
