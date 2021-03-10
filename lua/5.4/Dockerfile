@@ -19,6 +19,7 @@ RUN set -ex \
         -O lua.tar.gz \
     && [ "$(sha1sum lua.tar.gz | cut -d' ' -f1)" = "${SHA1_CHECKSUM}" ] \
     && tar -xzf lua.tar.gz \
+    && rm lua.tar.gz \
     \
     && cd lua-${LUA_VERSION} \
     && make -j"$(nproc)" linux-readline \
