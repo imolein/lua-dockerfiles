@@ -17,7 +17,7 @@ RUN set -ex \
     \
     && wget -c https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz \
         -O lua.tar.gz \
-    && [ "$(sha1sum lua.tar.gz | cut -d' ' -f2)" = "${SHA1_CHECKSUM}" ] \
+    && [ "$(sha1sum lua.tar.gz | cut -d' ' -f1)" = "${SHA1_CHECKSUM}" ] \
     && tar -xzf lua.tar.gz \
     \
     && cd lua-${LUA_VERSION} \
