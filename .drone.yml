@@ -14,7 +14,8 @@ steps:
         from_secret: docker_token
       tags:
         - '5.1'
-      dockerfile: lua/5.1/Dockerfile
+        - '5.1-alpine'
+      dockerfile: lua/5.1/Dockerfile.alpine
 
   - name: lua5.2
     image: plugins/docker
@@ -26,7 +27,8 @@ steps:
         from_secret: docker_token
       tags:
         - '5.2'
-      dockerfile: lua/5.2/Dockerfile
+        - '5.2-alpine'
+      dockerfile: lua/5.2/Dockerfile.alpine
 
   - name: lua5.3
     image: plugins/docker
@@ -38,7 +40,8 @@ steps:
         from_secret: docker_token
       tags:
         - '5.3'
-      dockerfile: lua/5.3/Dockerfile
+        - '5.3-alpine'
+      dockerfile: lua/5.3/Dockerfile.alpine
 
   - name: lua5.4
     image: plugins/docker
@@ -50,7 +53,57 @@ steps:
         from_secret: docker_token
       tags:
         - '5.4'
-      dockerfile: lua/5.4/Dockerfile
+        - '5.4-alpine'
+      dockerfile: lua/5.4/Dockerfile.alpine
+
+  - name: lua5.1-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.1-ubuntu'
+      dockerfile: lua/5.1/Dockerfile.ubuntu
+
+
+  - name: lua5.2-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.2-ubuntu'
+      dockerfile: lua/5.2/Dockerfile.ubuntu
+
+  - name: lua5.3-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.3-ubuntu'
+      dockerfile: lua/5.3/Dockerfile.ubuntu
+
+  - name: lua5.4-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.4-ubuntu'
+      dockerfile: lua/5.4/Dockerfile.ubuntu
 
 trigger:
   ref:
@@ -138,7 +191,8 @@ steps:
         from_secret: docker_token
       tags:
         - '5.1'
-      dockerfile: lua/5.1/Dockerfile
+        - '5.1-alpine'
+      dockerfile: lua/5.1/Dockerfile.alpine
 
   - name: lua5.2
     image: plugins/docker
@@ -150,7 +204,8 @@ steps:
         from_secret: docker_token
       tags:
         - '5.2'
-      dockerfile: lua/5.2/Dockerfile
+        - '5.2-alpine'
+      dockerfile: lua/5.2/Dockerfile.alpine
 
   - name: lua5.3
     image: plugins/docker
@@ -162,7 +217,8 @@ steps:
         from_secret: docker_token
       tags:
         - '5.3'
-      dockerfile: lua/5.3/Dockerfile
+        - '5.3-alpine'
+      dockerfile: lua/5.3/Dockerfile.alpine
 
   - name: lua5.4
     image: plugins/docker
@@ -174,7 +230,56 @@ steps:
         from_secret: docker_token
       tags:
         - '5.4'
-      dockerfile: lua/5.4/Dockerfile
+        - '5.4-alpine'
+      dockerfile: lua/5.4/Dockerfile.alpine
+
+  - name: lua5.1-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.1-ubuntu'
+      dockerfile: lua/5.1/Dockerfile.ubuntu
+
+  - name: lua5.2-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.2-ubuntu'
+      dockerfile: lua/5.2/Dockerfile.ubuntu
+
+  - name: lua5.3-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.3-ubuntu'
+      dockerfile: lua/5.3/Dockerfile.ubuntu
+
+  - name: lua5.4-ubuntu
+    image: plugins/docker
+    settings:
+      repo: imolein/lua
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.4-ubuntu'
+      dockerfile: lua/5.4/Dockerfile.ubuntu
 
 trigger:
   ref:
