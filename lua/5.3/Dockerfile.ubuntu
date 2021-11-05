@@ -1,0 +1,39 @@
+FROM ubuntu:latest
+
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
+
+ARG DEBIAN_FRONTEND="noninteractive"
+
+ENV LUA_VERSION="5.3.6"
+ENV SHA1_CHECKSUM="f27d20d6c81292149bc4308525a9d6733c224fa5"
+
+RUN set -ex \
+    \
+    && apt_marks="$(apt-mark showmanual)" \
+    \
+    && apt-get update \
+    && apt-get -y dist-upgrade \
+    && apt-get -y install \
+        libreadline-dev \
+        make \
+        gcc \
+        wget \
+    \
+    && wget -O lua.tar.gz -c https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz \
+    && [ "$(sha1sum lua.tar.gz | cut -d' ' -f1)" = "${SHA1_CHECKSUM}" ] \
+    && tar -xzf lua.tar.gz \
+    && rm lua.tar.gz \
+    && cd lua-${LUA_VERSION} \
+    && make -j"$(nproc)" linux \
+    && make install \
+    && cd .. \
+    \
+    && apt-mark auto '.*' > /dev/null \
+    && apt-mark manual $apt_marks \
+    && dpkg-query --showformat='${Package}\n' --show | grep -E '^libreadline[[:digit:]]+$' | xargs apt-mark manual \
+    && apt-get -y purge --autoremove -o APT::AutoRemove::RecommendsImportant=false \
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf lua-${LUA_VERSION}
+
+CMD ["lua"]
+
