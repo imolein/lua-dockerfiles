@@ -1,6 +1,6 @@
 #!/bin/bash
-set -eo pipefail
 
+set -eo pipefail
 
 for c in lua luarocks; do
   ${c}/update.sh
