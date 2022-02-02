@@ -3,6 +3,12 @@ kind: pipeline
 type: docker
 name: publish-lua
 
+trigger:
+  ref:
+    - refs/heads/master
+  event:
+    - push
+
 steps:
   - name: lua5.1
     image: plugins/docker
@@ -105,66 +111,10 @@ steps:
         - '5.4-ubuntu'
       dockerfile: lua/5.4/Dockerfile.ubuntu
 
-trigger:
-  ref:
-    - refs/heads/master
-  event:
-    - push
-
 ---
 kind: pipeline
 type: docker
 name: publish-luarocks
-
-steps:
-  - name: luarocks5.1
-    image: plugins/docker
-    settings:
-      repo: imolein/luarocks
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_token
-      tags:
-        - '5.1'
-      dockerfile: luarocks/5.1/Dockerfile
-
-  - name: luarocks5.2
-    image: plugins/docker
-    settings:
-      repo: imolein/luarocks
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_token
-      tags:
-        - '5.2'
-      dockerfile: luarocks/5.2/Dockerfile
-
-  - name: luarocks5.3
-    image: plugins/docker
-    settings:
-      repo: imolein/luarocks
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_token
-      tags:
-        - '5.3'
-      dockerfile: luarocks/5.3/Dockerfile
-
-  - name: luarocks5.4
-    image: plugins/docker
-    settings:
-      repo: imolein/luarocks
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_token
-      tags:
-        - '5.4'
-      dockerfile: luarocks/5.4/Dockerfile
-
 
 trigger:
   ref:
@@ -175,10 +125,67 @@ trigger:
 depends_on:
   - publish-lua
 
+steps:
+  - name: luarocks5.1
+    image: plugins/docker
+    settings:
+      repo: imolein/luarocks
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.1'
+      dockerfile: luarocks/5.1/Dockerfile
+
+  - name: luarocks5.2
+    image: plugins/docker
+    settings:
+      repo: imolein/luarocks
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.2'
+      dockerfile: luarocks/5.2/Dockerfile
+
+  - name: luarocks5.3
+    image: plugins/docker
+    settings:
+      repo: imolein/luarocks
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.3'
+      dockerfile: luarocks/5.3/Dockerfile
+
+  - name: luarocks5.4
+    image: plugins/docker
+    settings:
+      repo: imolein/luarocks
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      tags:
+        - '5.4'
+      dockerfile: luarocks/5.4/Dockerfile
+
 ---
 kind: pipeline
 type: docker
-name: weekly-rebuild-lua
+name: monthly-rebuild-lua
+
+trigger:
+  ref:
+    - refs/heads/master
+  event:
+    - cron
+  cron:
+    - monthly_build
 
 steps:
   - name: lua5.1
@@ -281,18 +288,21 @@ steps:
         - '5.4-ubuntu'
       dockerfile: lua/5.4/Dockerfile.ubuntu
 
+---
+kind: pipeline
+type: docker
+name: monthly-rebuild-luarocks
+
 trigger:
   ref:
     - refs/heads/master
   event:
     - cron
   cron:
-    - weekly_build
+    - monthly_build
 
----
-kind: pipeline
-type: docker
-name: weekly-rebuild-luarocks
+depends_on:
+  - monthly-rebuild-lua
 
 steps:
   - name: luarocks5.1
@@ -342,15 +352,3 @@ steps:
       tags:
         - '5.4'
       dockerfile: luarocks/5.4/Dockerfile
-
-
-trigger:
-  ref:
-    - refs/heads/master
-  event:
-    - cron
-  cron:
-    - weekly_build
-
-depends_on:
-  - weekly-rebuild-lua
