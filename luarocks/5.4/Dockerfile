@@ -1,4 +1,4 @@
-ARG luarocks_version="3.8.0"
+ARG luarocks_version="3.9.0"
 
 FROM alpine:latest AS verify
 
@@ -15,7 +15,7 @@ RUN set -ex \
 
 FROM imolein/lua:5.4
 
-LABEL maintainer = "Sebastian Huebner <sh@kokolor.es>"
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
 ARG luarocks_version
 ENV LUAROCKS_VERSION=$luarocks_version
