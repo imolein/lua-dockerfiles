@@ -5,7 +5,7 @@ local steps(ver, os) =
             image: "plugins/docker",
             settings: {
                 repo: "imolein/lua",
-                dry_run: true,
+                dry_run: false,
                 username : {
                     from_secret: "docker_username"
                 },
@@ -13,11 +13,12 @@ local steps(ver, os) =
                     from_secret: "docker_token"
                 },
                 dockerfile: "lua/%s/Dockerfile.%s" % [ver, os],
-                tags: [
+                tags: ( if os == "alpine" then [
                     "%s-%s" % [ver, os],
-                ] + ( if os == "alpine" then [
                     ver
-                ] else [] )
+                ] else [
+                    "%s-%s" % [ver, os]
+                ])
             }
         }
     ] + ( if os == "alpine" then [
@@ -26,7 +27,7 @@ local steps(ver, os) =
                 image: "plugins/docker",
                 settings: {
                     repo: "imolein/luarocks",
-                    dry_run: true,
+                    dry_run: false,
                     username : {
                         from_secret: "docker_username"
                     },
