@@ -1,4 +1,4 @@
-ARG luarocks_version="3.9.0"
+ARG luarocks_version="3.9.1"
 
 FROM alpine:latest AS verify
 
