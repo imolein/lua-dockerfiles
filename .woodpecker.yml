@@ -1,0 +1,52 @@
+matrix:
+  LUA_VERSION:
+    - 5.1
+    - 5.2
+    - 5.3
+    - 5.4
+
+pipeline:
+  lua-alpine:
+    group: build-lua
+    image: plugins/docker
+    settings:
+      dockerfile: lua/${LUA_VERSION}/Dockerfile.alpine
+      dry_run: false
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      repo: imolein/lua
+      tags:
+        - ${LUA_VERSION}-alpine
+        - ${LUA_VERSION}
+
+  lua-ubuntu:
+    group: build-lua
+    image: plugins/docker
+    settings:
+      dockerfile: lua/${LUA_VERSION}/Dockerfile.ubuntu
+      dry_run: false
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      repo: imolein/lua
+      tags:
+        - ${LUA_VERSION}-ubuntu
+
+  luarocks-alpine:
+    image: plugins/docker
+    settings:
+      dockerfile: luarocks/${LUA_VERSION}/Dockerfile
+      dry_run: false
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      repo: imolein/luarocks
+      tags:
+        - ${LUA_VERSION}-alpine
+        - ${LUA_VERSION}
+
+branches: master
