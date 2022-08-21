@@ -1,4 +1,4 @@
-[![status-badge](https://drone.kokolor.es/api/badges/imo/lua-dockerfiles/status.svg)](https://drone.kokolor.es/imo/lua-dockerfiles)
+[![status-badge](https://ci.kokolor.es/api/badges/imo/lua-dockerfiles/status.svg)](https://ci.kokolor.es/imo/lua-dockerfiles)
 
 # Docker Library
 
