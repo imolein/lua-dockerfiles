@@ -31,7 +31,7 @@ RUN set -ex \
       openssl \
       openssl-dev \
       ca-certificates \
-      curl \
+      wget \
       unzip \
       git \
     && tar -xzf luarocks-${LUAROCKS_VERSION}.tar.gz \
