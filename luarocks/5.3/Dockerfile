@@ -33,6 +33,8 @@ RUN set -ex \
       ca-certificates \
       wget \
       unzip \
+      zip \
+      curl \
       git \
     && tar -xzf luarocks-${LUAROCKS_VERSION}.tar.gz \
     && cd luarocks-${LUAROCKS_VERSION} \
@@ -41,6 +43,7 @@ RUN set -ex \
     && make install \
     && cd .. \
     && rm -f luarocks-${LUAROCKS_VERSION}.tar.gz \
-    && rm -rf luarocks-${LUAROCKS_VERSION}
+    && rm -rf luarocks-${LUAROCKS_VERSION} \
+    && luarocks install dkjson
 
 CMD ["luarocks"]
