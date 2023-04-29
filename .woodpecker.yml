@@ -4,6 +4,8 @@ matrix:
     - 5.2
     - 5.3
     - 5.4
+  FENNEL_VERSION:
+    - 1.3.0
 
 pipeline:
   lua-alpine:
@@ -48,5 +50,20 @@ pipeline:
       tags:
         - ${LUA_VERSION}-alpine
         - ${LUA_VERSION}
+
+  fennel-alpine:
+    group: build-fennel
+    image: plugins/docker
+    settings:
+      dockerfile: fennel/lua${LUA_VERSION}/Dockerfile.alpine
+      dry_run: true
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      repo: imolein/fennel
+      tags:
+        - ${FENNEL_VERSION}-${LUA_VERSION}-alpine
+        - ${FENNEL_VERSION}-${LUA_VERSION}
 
 branches: master
