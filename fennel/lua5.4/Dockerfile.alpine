@@ -1,0 +1,25 @@
+ARG fennel_version="1.3.0"
+
+FROM alpine:latest AS verify
+
+ARG fennel_version
+ENV FENNEL_VERSION=${fennel_version}
+ENV FENNEL_GPG_KEY="040193357d0606ed"
+
+RUN set -ex \
+    && apk add --no-cache gnupg \
+    && gpg --keyserver keyserver.ubuntu.com --recv-keys ${FENNEL_GPG_KEY} \
+    && wget -c https://fennel-lang.org/downloads/fennel-${FENNEL_VERSION} \
+    && wget -c https://fennel-lang.org/downloads/fennel-${FENNEL_VERSION}.asc \
+    && gpg --verify fennel-${FENNEL_VERSION}.asc fennel-${FENNEL_VERSION}
+
+FROM imolein/lua:5.4-alpine
+
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
+
+ARG fennel_version
+ENV FENNEL_VERSION=${fennel_version}
+
+COPY --from=verify --chmod=755 fennel-${FENNEL_VERSION} /usr/local/bin/fennel
+
+CMD ["fennel"]
