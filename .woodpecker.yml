@@ -10,10 +10,10 @@ matrix:
 pipeline:
   lua-alpine:
     group: build-lua
-    image: plugins/docker
+    image: woodpeckerci/plugin-docker-buildx
     settings:
       dockerfile: lua/${LUA_VERSION}/Dockerfile.alpine
-      dry_run: true
+      dry_run: false
       username:
         from_secret: docker_username
       password:
@@ -25,10 +25,10 @@ pipeline:
 
   lua-ubuntu:
     group: build-lua
-    image: plugins/docker
+    image: woodpeckerci/plugin-docker-buildx
     settings:
       dockerfile: lua/${LUA_VERSION}/Dockerfile.ubuntu
-      dry_run: true
+      dry_run: false
       username:
         from_secret: docker_username
       password:
@@ -38,10 +38,10 @@ pipeline:
         - ${LUA_VERSION}-ubuntu
 
   luarocks-alpine:
-    image: plugins/docker
+    image: woodpeckerci/plugin-docker-buildx
     settings:
       dockerfile: luarocks/${LUA_VERSION}/Dockerfile
-      dry_run: true
+      dry_run: false
       username:
         from_secret: docker_username
       password:
@@ -53,12 +53,12 @@ pipeline:
 
   fennel-alpine:
     group: build-fennel
-    image: plugins/docker
+    image: woodpeckerci/plugin-docker-buildx
     environment:
       - DOCKER_BUILDKIT=1
     settings:
       dockerfile: fennel/lua${LUA_VERSION}/Dockerfile.alpine
-      dry_run: true
+      dry_run: false
       username:
         from_secret: docker_username
       password:
