@@ -1,0 +1,22 @@
+FROM imolein/luarocks:5.3-slim
+
+LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
+
+# Install build environment so C modules can be build directly using this image
+# without installing stuff before
+RUN set -ex \
+    && apk add --no-cache build-base \
+      bsd-compat-headers \
+      git \
+      m4 \
+      openssl-dev \
+      unzip \
+      \
+      # Adding this so luarocks upload will work
+      zip \
+      # We need curl because for whatever reason luarocks.upload.api enforcing it
+      # when we actually want to use wget
+      curl \
+    && luarocks install dkjson
+
+CMD ["luarocks"]

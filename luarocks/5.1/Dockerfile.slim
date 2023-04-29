@@ -13,7 +13,7 @@ RUN set -ex \
     && wget -c https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz.asc \
     && gpg --verify luarocks-${LUAROCKS_VERSION}.tar.gz.asc luarocks-${LUAROCKS_VERSION}.tar.gz
 
-FROM imolein/lua:5.4
+FROM imolein/lua:5.1
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
@@ -22,20 +22,15 @@ ENV LUAROCKS_VERSION=$luarocks_version
 
 COPY --from=verify luarocks-${LUAROCKS_VERSION}.tar.gz .
 
-# Install build environment so C modules can be build directly using this image
-# without installing stuff before
 RUN set -ex \
-    && apk add --no-cache build-base \
-      m4 \
-      bsd-compat-headers \
+    && apk add --no-cache \
       openssl \
-      openssl-dev \
       ca-certificates \
       wget \
-      unzip \
-      zip \
-      curl \
-      git \
+    && apk add --no-cache --virtual .build-deps \
+      make \
+      gcc \
+      libc-dev \
     && tar -xzf luarocks-${LUAROCKS_VERSION}.tar.gz \
     && cd luarocks-${LUAROCKS_VERSION} \
     && ./configure --with-lua=/usr/local \
@@ -44,6 +39,6 @@ RUN set -ex \
     && cd .. \
     && rm -f luarocks-${LUAROCKS_VERSION}.tar.gz \
     && rm -rf luarocks-${LUAROCKS_VERSION} \
-    && luarocks install dkjson
+    && apk del .build-deps
 
 CMD ["luarocks"]

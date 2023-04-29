@@ -38,9 +38,24 @@ pipeline:
         - ${LUA_VERSION}-ubuntu
 
   luarocks-alpine:
+    group: build-luarocks-slim
     image: woodpeckerci/plugin-docker-buildx
     settings:
-      dockerfile: luarocks/${LUA_VERSION}/Dockerfile
+      dockerfile: luarocks/${LUA_VERSION}/Dockerfile.slim
+      dry_run: false
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_token
+      repo: imolein/luarocks
+      tags:
+        - ${LUA_VERSION}-alpine-slim
+        - ${LUA_VERSION}-slim
+
+  luarocks-alpine-fat:
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      dockerfile: luarocks/${LUA_VERSION}/Dockerfile.fat
       dry_run: false
       username:
         from_secret: docker_username
@@ -49,6 +64,7 @@ pipeline:
       repo: imolein/luarocks
       tags:
         - ${LUA_VERSION}-alpine
+        - ${LUA_VERSION}-fat
         - ${LUA_VERSION}
 
   fennel-alpine:
