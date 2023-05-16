@@ -2,8 +2,8 @@ FROM alpine:latest
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
-ENV LUA_VERSION="5.4.4"
-ENV SHA2_CHECKSUM="164c7849653b80ae67bec4b7473b884bf5cc8d2dca05653475ec2ed27b9ebf61"
+ENV LUA_VERSION="5.4.6"
+ENV SHA2_CHECKSUM="7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88"
 
 RUN set -ex \
     \
