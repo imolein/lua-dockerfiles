@@ -84,4 +84,7 @@ steps:
         - ${FENNEL_VERSION}-${LUA_VERSION}-alpine
         - ${FENNEL_VERSION}-${LUA_VERSION}
 
-branches: master
+when:
+  branch: master
+  event: [push, cron]
+  cron: weekly rebuild
