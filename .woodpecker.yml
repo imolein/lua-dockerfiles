@@ -5,7 +5,7 @@ matrix:
     - 5.3
     - 5.4
   FENNEL_VERSION:
-    - 1.3.1
+    - 1.4.0
 
 steps:
   lua-alpine:

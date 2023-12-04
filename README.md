@@ -48,4 +48,3 @@ You can find the images on Docker Hub:
 * [Lua](https://hub.docker.com/r/imolein/lua)
 * [Fennel](https://hub.docker.com/r/imolein/fennel)
 * [LuaRocks](https://hub.docker.com/r/imolein/luarocks)
-
