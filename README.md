@@ -23,10 +23,10 @@ This repository is a fork from [akornatskyy/docker-library](https://github.com/a
 
 ### imolein/fennel tags
 
-* 1.3.0-5.4, 1.3.0-5.4-alpine
-* 1.3.0-5.3, 1.3.0-5.3-alpine
-* 1.3.0-5.2, 1.3.0-5.2-alpine
-* 1.3.0-5.1, 1.3.0-5.1-alpine
+* 1.4.0-5.4, 1.4.0-5.4-alpine
+* 1.4.0-5.3, 1.4.0-5.3-alpine
+* 1.4.0-5.2, 1.4.0-5.2-alpine
+* 1.4.0-5.1, 1.4.0-5.1-alpine
 
 ### imolein/luarocks tags
 
@@ -48,3 +48,4 @@ You can find the images on Docker Hub:
 * [Lua](https://hub.docker.com/r/imolein/lua)
 * [Fennel](https://hub.docker.com/r/imolein/fennel)
 * [LuaRocks](https://hub.docker.com/r/imolein/luarocks)
+
