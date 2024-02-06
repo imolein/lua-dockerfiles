@@ -9,7 +9,6 @@ matrix:
 
 steps:
   lua-alpine:
-    group: build-lua
     image: woodpeckerci/plugin-docker-buildx
     environment:
       - DOCKER_BUILDKIT=1
@@ -26,7 +25,6 @@ steps:
         - ${LUA_VERSION}
 
   lua-ubuntu:
-    group: build-lua
     image: woodpeckerci/plugin-docker-buildx
     environment:
       - DOCKER_BUILDKIT=1
@@ -42,7 +40,6 @@ steps:
         - ${LUA_VERSION}-ubuntu
 
   luarocks-alpine:
-    group: build-luarocks-slim
     image: woodpeckerci/plugin-docker-buildx
     environment:
       - DOCKER_BUILDKIT=1
@@ -57,6 +54,8 @@ steps:
       tags:
         - ${LUA_VERSION}-alpine-slim
         - ${LUA_VERSION}-slim
+    depends_on:
+      - lua-alpine
 
   luarocks-alpine-fat:
     image: woodpeckerci/plugin-docker-buildx
@@ -74,9 +73,10 @@ steps:
         - ${LUA_VERSION}-alpine
         - ${LUA_VERSION}-fat
         - ${LUA_VERSION}
+    depends_on:
+      - lua-alpine
 
   fennel-alpine:
-    group: build-fennel
     image: woodpeckerci/plugin-docker-buildx
     environment:
       - DOCKER_BUILDKIT=1
@@ -91,6 +91,8 @@ steps:
       tags:
         - ${FENNEL_VERSION}-${LUA_VERSION}-alpine
         - ${FENNEL_VERSION}-${LUA_VERSION}
+    depends_on:
+      - lua-alpine
 
 when:
   branch: master
