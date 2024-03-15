@@ -4,7 +4,7 @@ FROM alpine:latest AS verify
 
 ARG fennel_version
 ENV FENNEL_VERSION=${fennel_version}
-ENV FENNEL_GPG_KEY="040193357d0606ed"
+ENV FENNEL_GPG_KEY="9D13D9426A0814B3373CF5E3D8A8243577A7859F"
 
 RUN set -ex \
     && apk add --no-cache gnupg \
