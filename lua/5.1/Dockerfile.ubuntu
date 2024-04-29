@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:jammy
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
