@@ -2,8 +2,8 @@ FROM ubuntu:jammy
 
 LABEL maintainer="Sebastian Huebner <sh@kokolor.es>"
 
-ENV LUA_VERSION="5.4.6"
-ENV SHA2_CHECKSUM="7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88"
+ENV LUA_VERSION="5.4.7"
+ENV SHA2_CHECKSUM="9fbf5e28ef86c69858f6d3d34eccc32e911c1a28b4120ff3e84aaa70cfbf1e30"
 
 RUN set -ex \
     \
